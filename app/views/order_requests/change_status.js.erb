@@ -1,0 +1,1 @@
+$("#request<%= @order_request.id%>").html("<%= escape_javascript(render partial: 'order_requests/results', locals: { order_request: @order_request }) %>");

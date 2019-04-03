@@ -1,0 +1,31 @@
+<td><%= order_request.user.first_name %></td>
+<td><%= order_request.order_name %></td>
+<td><%= order_request.amount %></td>
+<td><%= order_request.quantity %></td>
+<td id="<%= order_request.id %>" style="<%= 'color: red' if order_request.reject? %>"><%= order_request.status %></td>
+<td><%= order_request.country %></td>
+<td><%= order_request.city %></td>
+<td><%= order_request.house_num %></td>
+<td><%= order_request.created_at.strftime("%I:%M:%S") %></td>
+<% if current_user.admin? %>
+  <td id="displayMap"> <%= link_to "Show", order_request_path(order_request), class: "btn btn-warning" %></td>
+<% end %>
+<% if current_user.admin? %>
+	<td>
+    <div class="dropdown" class="pull-right"><a data-toggle="dropdown" class="dropdown-toggle">  <span class="text">Select Status</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li> <%= link_to "Pending", change_status_order_request_path(order_request, status: "pending"), remote: true %> </li>
+        <li class="divider"></li>
+        <li><%= link_to "Accept", change_status_order_request_path(order_request, status: "accept" ), remote: true %></li>
+        <li class="divider"></li>
+        <li> <%= link_to "Reject", change_status_order_request_path(order_request, status: "reject" ), remote: true %> </li>
+        <li class="divider"></li>
+        <li><%= link_to "Complete", change_status_order_request_path(order_request, status: "complete"), remote: true %></li> 
+      </ul>
+    </div>
+	</td>
+<% end %>
+<% if current_user.customer? %>
+	<td><%= link_to "Edit", edit_user_order_request_path(current_user, order_request), class: "btn btn-warning" %> <%= link_to user_order_request_path(current_user, order_request), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>Delete<% end %>
+	</td>
+<% end %>

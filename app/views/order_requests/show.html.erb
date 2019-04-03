@@ -1,0 +1,35 @@
+<div class="container-fluid" >
+	<div id="map" style="width: 100%; height: 100%">
+		<h3> Current user's Location </h3>
+		<p id="location"></p>
+	</div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUzZdi2LgA2zI5o2bBSqJvuV-bEEkfZpU&libraries=geometry"></script>
+<script type="text/javascript">
+
+	if ( gon.latitude )
+	{
+
+		var myLatLng = new google.maps.LatLng(gon.latitude, gon.longitude);
+		var map = new google.maps.Map(document.getElementById("map"),
+		{
+		    zoom: 17,
+		    center: myLatLng,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+
+		var marker = new google.maps.Marker(
+		{
+		    position: myLatLng,
+		    map: map,
+		    title: 'User Location'
+		});
+
+	}
+
+	else
+	{
+		document.getElementById("location").innerHTML = "User didn't allow his location";
+	}
+</script>

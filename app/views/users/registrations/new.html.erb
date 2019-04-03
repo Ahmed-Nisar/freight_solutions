@@ -1,0 +1,53 @@
+<div id="loginbox">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {"data-parsley-validate": ''}) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="control-group normal_text"> <h3> CARGO SYSTEM </h3></div>
+
+      <div class="control-group">
+        <div class="controls">
+          <div class="main_input_box">
+            <%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name", required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <div class="main_input_box">
+            <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <div class="main_input_box">
+            <%= f.email_field :email, placeholder: 'Email', class: 'form-control', type: 'email', data_parsley_type: 'email', required: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <div class="main_input_box">
+            <%= f.password_field :password, placeholder: 'Password', class: 'form-control', minlength: '8', data_parsley_minlength: '8', required: true, id: "password" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <div class="main_input_box">
+            <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: "form-control", minlength: '8', data_parsley_minlength: '8', :"data-parsley-equalto" => "#password", required: true, :"data-parsley-error-message" => "Password doesn't match." %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <span class="pull-left"><%= link_to "Sign In", new_user_session_path , class: "btn btn-primary" %></span>
+        <span class="pull-right"><%= f.submit "Sign Up", class: "btn btn-success" %></span>
+      </div>
+
+    <% end %>
+</div>

@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>CargoSystem</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%= include_gon %>
+<%= csrf_meta_tags %>
+<%= stylesheet_link_tag 'application', media: 'all' %>
+
+</head>
+
+<body>
+  <% if current_user.present? %>  
+    <%= render 'layouts/header'%>
+    <%= render 'layouts/sidebar'%>
+  <% end %>
+  <div id= <%= "content" if current_user.present? %>  >
+    <%= yield %>
+  </div>
+  <% if current_user.present? %>
+    <%= render 'layouts/footer'%>
+  <% end %>
+
+  
+  <script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+    function goPage (newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+        
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-" ) {
+                resetMenu();            
+            } 
+            // else, send page to designated URL            
+            else {  
+              document.location.href = newURL;
+            }
+        }
+    }
+
+  // resets the menu selection upon entry to this page:
+  function resetMenu() {
+     document.gomenu.selector.selectedIndex = 2;
+  }
+  </script>
+  
+
+  
+
+  <%= javascript_include_tag 'application' %>
+
+</body>
+</html>

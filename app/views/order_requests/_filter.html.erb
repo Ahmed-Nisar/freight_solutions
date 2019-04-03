@@ -1,0 +1,5 @@
+<% @order_requests.each do |order_request| %>
+  <tr id="request<%= order_request.id %>" >
+    <%= render partial: "results", locals: { order_request: order_request } %>
+  </tr>
+<% end %>

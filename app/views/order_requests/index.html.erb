@@ -1,0 +1,56 @@
+<div id="content-header">
+   
+</div>
+<div class="container-fluid">
+
+  <div class="pull-right">
+    <select class="btn-info" id='select'>
+      <option data-display="Select">All Orders</option>
+      <option value="pending">Pending</option>
+      <option value="accept">Accept</option>
+      <option value="reject">Reject</option>
+      <option value="complete">Complete</option>
+    </select>
+  </div>
+  <h3>All Orders will be shown here</h3>
+
+    <table class= "table table-bordered table-stripped" id="all_results">
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Order Name</th>
+          <th>Amount</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>House Number</th>
+          <th>Created At</th>
+          <% if current_user.admin? %><th>Show Location</th><% end %>
+          <% if current_user.admin? %><th>Assign Status</th><% end %>
+          <% if current_user.customer? %><th>Action</th><% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= render partial: "filter", locals: { order_requests: @order_requests} %>
+      </tbody>
+        
+    </table>
+
+    <div class="col-sm-12">
+      <%= link_to "Back", root_path, class: "btn btn-primary" %>
+      <% if current_user.customer? %>
+      <div class="pull-right ">
+        <%= link_to "Add New Order", new_order_request_path, class: "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="pagination pagination-centered" id="paginate">
+        <%= render partial: "page", locals: { order_requests: @order_requests}  %>
+      </div>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+<div id="loginbox">            
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), id: "loginform", class: "form-vertical" ) do |f| %>
+  <div class="control-group normal_text"> <h3> CARGO SYSTEM </h3></div>
+    <div class="control-group">
+      <div class="controls">
+        <div class="main_input_box">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder: "Email" %>
+        </div>
+      </div>
+    </div>
+  <div class="control-group">
+    <div class="controls">
+      <div class="main_input_box">
+        <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder: "Password" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <span class="pull-left"><%= link_to "Sign up", new_user_registration_path , class: "btn btn-primary" %></span>
+    <span class="pull-right"><%= f.submit "Log in", class:"btn btn-success" %></span>
+  </div>
+  <% end %>
+
+</div>
